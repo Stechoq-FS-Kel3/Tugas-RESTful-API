@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Fajar",
+        "umur": 10,
+        "alamat": "Surabaya"
+    },
+    {
+        "id": 2,
+        "name": "Fuad",
+        "umur": 11,
+        "alamat": "Surabaya"
+    },
+    {
+        "id": 3,
+        "name": "Nezal",
+        "umur": 12,
+        "alamat": "Surabaya"
+    },
+    {
+        "id": 4,
+        "name": "Dhenmas",
+        "umur": 13,
+        "alamat": "Surabaya"
+    },
+    {
+        "id": 5,
+        "name": "Juwan",
+        "umur": 14,
+        "alamat": "Surabaya"
+    },
+    {
+        "id": 6,
+        "name": "Shintia",
+        "umur": 15,
+        "alamat": "Surabaya"
+    }
+]
