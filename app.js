@@ -18,6 +18,25 @@ app.get('/api/v1/datah', (req, res) => {
     });
 });
 
+app.get('/api/v1/datah/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const selectedData = datah.find(item => item.id === id);
+
+    if (!selectedData) {
+        return res.status(404).json({
+            status: "error",
+            message: "Data not found"
+        });
+    }
+
+    res.status(200).json({
+        status: "success",
+        data: {
+            datah: selectedData
+        }
+    });
+});
+
 const port = 3000;
 app.listen(port, () => {
   console.log(`Server berjalan di http://localhost:${port}`);
