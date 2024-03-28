@@ -31,6 +31,30 @@ app.get("/api/v1/datah/:id", (req, res) => {
     });
   }
 
+  app.put("/api/v1/datah/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const selectedDataIndex = datah.findIndex((item) => item.id === id);
+
+    if (selectedDataIndex === -1) {
+      return res.status(404).json({
+        status: "error",
+        message: "Data not found",
+      });
+    }
+
+    // Ambil data baru dari body request
+    const newData = req.body;
+
+    // Perbarui data pada index yang sesuai
+    datah[selectedDataIndex] = { ...datah[selectedDataIndex], ...newData };
+
+    res.json({
+      status: "success",
+      message: "Data updated successfully",
+      updatedData: datah[selectedDataIndex],
+    });
+  });
+
   res.status(200).json({
     status: "success",
     data: {
