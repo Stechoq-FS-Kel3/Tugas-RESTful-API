@@ -8,7 +8,6 @@ const app = express();
 // Definisikan rute dan aturan aplikasi Express di sini
 
 app.use(express.json());
-
 const dataRouter = express.Router();
 dataRouter.route("/").get(getData).post(createData);
 dataRouter.route("/:id").put(updateData);
