@@ -76,9 +76,34 @@ const updateData = function (req, res) {
   });
 };
 
+const deletedData = function (req, res) {
+  const id = req.params.id * 1;
+  const deletedToData = data.find((item) => item.id === id);
+  if (!deletedToData) {
+    return res.status(404).json({
+      status: "fail",
+      message: "Data not found",
+    });
+  }
+
+  const index = data.indexOf(deletedToData);
+
+  data.splice(index, 1);
+
+  fs.writeFile(FILE_PATH, JSON.stringify(data), (err) => {
+    res.status(204).json({
+      status: "success",
+      data: {
+        data: null,
+      },
+    });
+  });
+};
+
 module.exports = {
   getData,
   createData,
   updateData,
   getDataById,
+  deletedData,
 };
