@@ -1,9 +1,11 @@
+
 const express = require("express");
 const {
   getData,
   createData,
   updateData,
   getDataById,
+  deletedData,
 } = require("./controllers/dataController");
 
 const app = express();
@@ -17,7 +19,7 @@ app.get("/", (req, res) => {
 
 const dataRouter = express.Router();
 dataRouter.route("/").get(getData).post(createData);
-dataRouter.route("/:id").get(getDataById).put(updateData);
+dataRouter.route("/:id").get(getDataById).put(updateData).delete(deletedData);
 
 app.use("/api/v1/users", dataRouter);
 
