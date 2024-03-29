@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 //GET - API
-app.get("/api/v1/datah", (req, res) => {
+app.get('/api/v1/datah', (req, res) => {
   res.status(200).json({
     status: "sucess",
     count: datah.length,
@@ -23,23 +23,30 @@ app.get("/api/v1/datah", (req, res) => {
 });
 
 //POST - API
-app.post('/Tugas-RESTful-API/datah.json', (req,res)=> {
-  // console.log(req.body);
+app.post('/api/v1/datah', (req,res)=> {
   const newId = datah[datah.length - 1].id + 1;
+  const { nama, umur, alamat } = req.body;
 
-  const newdata = Object.assign({id:newId}, req.body)
+  const newdata = { id: newId, nama, umur, alamat };
   datah.push(newdata);
 
-  fs.writeFile('/Tugas-RESTful-API/datah.json',JSON stringify(datah), (err) => {
+  fs.writeFile('./data/datah.json', JSON.stringify(datah), (err) => {
+    if (err) {
+      return res.status(500).json({
+        status: "error",
+        message: "Server error",
+      });
+    }
+
     res.status(201).json({
-      status: "succes",
+      status: "success",
       data: {
         datah: newdata
       }
-    })
-  }
-  // res.send('Created');
-})
+    });
+  });
+});
+
 
 app.get("/api/v1/datah/:id", (req, res) => {
   const id = parseInt(req.params.id);
