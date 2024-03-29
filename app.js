@@ -1,10 +1,11 @@
-const { getData, deletedData } = require("./controllers/dataController");
+
 const express = require("express");
-const fs = require("fs");
 const {
+  getData,
   createData,
   updateData,
   getDataById,
+  deletedData,
 } = require("./controllers/dataController");
 
 const app = express();
@@ -12,6 +13,10 @@ const app = express();
 // Definisikan rute dan aturan aplikasi Express di sini
 
 app.use(express.json());
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 const dataRouter = express.Router();
 dataRouter.route("/").get(getData).post(createData);
 dataRouter.route("/:id").get(getDataById).put(updateData).delete(deletedData);
