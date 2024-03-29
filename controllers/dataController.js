@@ -91,11 +91,9 @@ const deletedData = function (req, res) {
   data.splice(index, 1);
 
   fs.writeFile(FILE_PATH, JSON.stringify(data), (err) => {
-    res.status(204).json({
+    res.status(200).json({
       status: "success",
-      data: {
-        data: null,
-      },
+      message: "Data deleted successfully",
     });
   });
 };
