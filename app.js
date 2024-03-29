@@ -23,21 +23,21 @@ app.get("/api/v1/datah", (req, res) => {
 });
 
 //POST - API
-app.post('/Tugas-RESTful-API/datah.json', (req,res)=> {
+app.post('/api/v1/datah', (req,res)=> {
   // console.log(req.body);
   const newId = datah[datah.length - 1].id + 1;
 
   const newdata = Object.assign({id:newId}, req.body)
   datah.push(newdata);
 
-  fs.writeFile('/Tugas-RESTful-API/datah.json',JSON stringify(datah), (err) => {
+  fs.writeFile('/api/v1/datah',JSON.stringify(datah), (err) => {
     res.status(201).json({
       status: "succes",
       data: {
         datah: newdata
       }
     })
-  }
+  })
   // res.send('Created');
 })
 
