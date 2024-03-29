@@ -9,6 +9,24 @@ const getData = function (req, res) {
     data: data,
   });
 };
+
+const getDataById = function (req, res) {
+  const id = parseInt(req.params.id);
+  const selectedData = data.find((item) => item.id === id);
+
+  if (!selectedData) {
+    return res.status(404).json({
+      status: "error",
+      message: "Data not found",
+    });
+  }
+
+  res.status(200).json({
+    status: "success",
+    data: selectedData,
+  });
+};
+
 const createData = function (req, res) {
   const newId = data[data.length - 1].id + 1;
 
@@ -62,4 +80,5 @@ module.exports = {
   getData,
   createData,
   updateData,
+  getDataById,
 };
